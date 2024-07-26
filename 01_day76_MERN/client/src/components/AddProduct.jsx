@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import ProductContext from "../context/ProductContext";
 
 const AddProduct = () => {
+  const { addProduct } = useContext(ProductContext);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    price: "",
+    qty: "",
+    category: "",
+    img: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({ ...formData, [name]: value });
+  };
+
   return (
     <div>
-      {/* <h1 className="text-center">Add Product</h1> */}
-
       <div
-        className="container my-5"
+        className="container my-3"
         style={{
           border: "2px solid blue",
           padding: "20px",
@@ -17,17 +33,32 @@ const AddProduct = () => {
         <form>
           <div className="mb-3">
             <label className="form-label">Product Title</label>
-            <input type="text" className="form-control bg-black text-light" />
+            <input
+              value={formData.title}
+              name="title"
+              type="text"
+              className="form-control bg-black text-light"
+            />
           </div>
 
           <div className="mb-3">
             <label className="form-label">Description</label>
-            <input type="text" className="form-control bg-black text-light" />
+            <input
+              value={formData.description}
+              name="description"
+              type="text"
+              className="form-control bg-black text-light"
+            />
           </div>
 
           <div className="mb-3">
             <label className="form-label">Category</label>
-            <select className="form-select bg-black text-light" aria-label="Default select example">
+            <select
+              value={formData.category}
+              name="category"
+              className="form-select bg-black text-light"
+              aria-label="Default select example"
+            >
               <option selected>Select Category</option>
               <option value="1">Mobiles</option>
               <option value="2">Laptops</option>
@@ -39,12 +70,22 @@ const AddProduct = () => {
 
           <div className="mb-3">
             <label className="form-label">Qty</label>
-            <input type="number" className="form-control bg-black text-light" />
+            <input
+              value={formData.qty}
+              name="qty"
+              type="number"
+              className="form-control bg-black text-light"
+            />
           </div>
 
           <div className="mb-3">
             <label className="form-label">Img Url</label>
-            <input type="text" className="form-control bg-black text-light" />
+            <input
+              value={formData.img}
+              name="img"
+              type="text"
+              className="form-control bg-black text-light"
+            />
           </div>
 
           <div className="d-grid col-6 mx-auto mt-5">

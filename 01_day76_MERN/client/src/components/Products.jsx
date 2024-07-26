@@ -17,10 +17,7 @@ const Products = () => {
                 className="card bg-dark text-light"
                 style={{ width: "18rem" }}
               >
-                <div
-                 
-                  className="d-flex justify-content-center align-items-center p-3"
-                >
+                <div className="d-flex justify-content-center align-items-center p-3">
                   <img
                     src={product.img}
                     className="card-img-top"
@@ -37,14 +34,9 @@ const Products = () => {
                   <h5 className="card-title">{product.title}</h5>
                   <p className="card-text">{product.description}</p>
                   <button className="btn btn-primary mx-3">
-                    {product.price}
+                    {product.price}{" "} ₹
                   </button>
-                  <button
-                    className="btn btn-warning"
-                 
-                  >
-                    Add To Cart
-                  </button>
+                  <button className="btn btn-warning">Add To Cart</button>
                 </div>
               </div>
             </div>

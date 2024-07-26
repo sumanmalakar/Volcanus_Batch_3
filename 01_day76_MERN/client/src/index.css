@@ -1,4 +1,33 @@
-body{
+body {
   background-color: black;
   color: white;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.nav {
+  background-color: rgb(76, 7, 62);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.nav .left {
+  font-weight: bold;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: white;
+}
+
+.btn {
+  font-weight: bold;
+}
+
+.main_nav {
+  position: sticky;
+  top: 0;
 }
