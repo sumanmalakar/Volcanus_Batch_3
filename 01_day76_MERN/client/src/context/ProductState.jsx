@@ -4,6 +4,7 @@ import axios from "axios";
 
 const ProductState = (props) => {
   const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const url = "http://localhost:1000/api";
 
@@ -16,7 +17,7 @@ const ProductState = (props) => {
     };
 
     fetchProduct();
-  }, []);
+  }, [reload]);
 
   // add Product
   const addProduct = async (title, description, price, category, qty, img) => {
@@ -36,12 +37,26 @@ const ProductState = (props) => {
         },
       }
     );
-  
-    console.log("add Product", api);
+    setReload(!reload);
+    // console.log("add Product", api);
+    return api.data;
+  };
+
+  // delete Product
+  const deleteProduct = async (id) => {
+    const api = await axios.delete(`${url}/product/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setReload(!reload);
+
+    console.log("products deleted", api);
+    return api.data
   };
 
   return (
-    <ProductContext.Provider value={{ products, addProduct }}>
+    <ProductContext.Provider value={{ products, addProduct, deleteProduct }}>
       {props.children}
     </ProductContext.Provider>
   );

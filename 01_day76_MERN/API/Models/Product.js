@@ -10,6 +10,11 @@ const productSchema = new mongoose.Schema({
   category: { type: String, require: true },
   img: { type: String, require: true },
   qty: { type: Number, require: true },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

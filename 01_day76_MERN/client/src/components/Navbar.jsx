@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="main_nav">
-      <div className="nav">
+      <div className="nav"
+  
+      >
         <Link to={"/"} className="left">Shopping Cart</Link>
         <div className="right">
           <Link to={"/add"} className="btn btn-primary mx-2">Add Product</Link>

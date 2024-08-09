@@ -2,9 +2,17 @@ import { Products } from "../Models/Product.js";
 
 // add Product
 export const addProduct = async (req, res) => {
-  // console.log(req.body)
+  const { title, description, price, category, img, qty } = req.body;
   try {
-    let product = await Products.create(req.body);
+    let product = await Products.create({
+      title,
+      description,
+      price,
+      category,
+      img,
+      qty,
+      userId: req.user,
+    });
     res.json({
       message: "Your product has been added...",
       product,
@@ -65,6 +73,24 @@ export const deleteProductById = async (req, res) => {
       message: "Your Product has been Deleted...!",
       success: true,
     });
+  } catch (error) {
+    res.json({ message: "Internal Server error", success: false });
+  }
+};
+
+// get product by User Id
+export const getProductByUserId = async (req, res) => {
+  const id = req.user;
+
+  try {
+    let products = await Products.find({ userId: id });
+    if (!products)
+      return res.json({
+        message: "No Product Find ",
+        products,
+        success: false,
+      });
+    res.json({ message: "User Products", products, success: true });
   } catch (error) {
     res.json({ message: "Internal Server error", success: false });
   }
