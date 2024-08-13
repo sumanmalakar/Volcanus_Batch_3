@@ -15,7 +15,6 @@ const ProductState = (props) => {
       setProducts(api.data.products);
       console.log("products from backend", products);
     };
-
     fetchProduct();
   }, [reload]);
 
@@ -52,11 +51,53 @@ const ProductState = (props) => {
     setReload(!reload);
 
     console.log("products deleted", api);
-    return api.data
+    return api.data;
+  };
+
+  // user Register
+  const register = async (name, email, phone, password) => {
+    const api = await axios.post(
+      `${url}/user/register`,
+      {
+        name,
+        email,
+        phone,
+        password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return api.data;
+    // console.log("User Register at context ", api);
+  };
+
+  // user Login
+  const login = async (email, password) => {
+    const api = await axios.post(
+      `${url}/user/login`,
+      {
+        email,
+
+        password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log("User login ", api.data);
+    localStorage.setItem("superman", api.data.token);
+    return api.data;
   };
 
   return (
-    <ProductContext.Provider value={{ products, addProduct, deleteProduct }}>
+    <ProductContext.Provider
+      value={{ products, addProduct, deleteProduct, register, login }}
+    >
       {props.children}
     </ProductContext.Provider>
   );

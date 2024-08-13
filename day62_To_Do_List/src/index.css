@@ -1,9 +1,22 @@
 body{
   background-color: black;
-  color: wheat;
+  color: white;
   /* overflow: hidden; */
 }
 
 body::-webkit-scrollbar{
   display: none;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blueviolet;
+}
+
+.nav .right .items{
+  text-decoration: none;
+  color: white;
+  padding: 25px;
 }
